@@ -66,3 +66,19 @@ int main(void) {
         AMC130M02_SetLED(true);
     }
 }
+```
+
+## Design Notes
+
+- The driver owns protocol framing, command encoding, register access, CRC calculation, and conversion of raw ADC words.
+- Platform-specific SPI, chip-select, data-ready, and timing operations stay behind the HAL interface.
+- No dynamic allocation is used, which makes the driver suitable for small bare-metal systems.
+- The public repository contains a reusable standalone driver; product-specific integration code remains outside the project.
+
+## Project Status
+
+The driver API and register map are implemented. Hardware integration still requires a target-specific HAL and validation against the final board configuration.
+
+## License
+
+Released under the [MIT License](LICENSE).
